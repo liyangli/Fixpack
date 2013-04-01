@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* header */
+.header{ background:url(../images/head_bg.gif) repeat-x;}
+.exit{ background:url(../images/exit.gif) no-repeat;}
+.exit a{ color:#666;}
+.exit a:hover{ color:#000;}
+
+.home{ background:url(../images/home.png) no-repeat;}
+.search_data{ background:url(../images/search_data.png) no-repeat;}
+.monitor{ background:url(../images/monitor.png) no-repeat;}
+.knowledge{ background:url(../images/knowledge.png) no-repeat;}
+.system{ background:url(../images/system.png) no-repeat;}
+.home_select{ background:url(../images/home.png) no-repeat -58px 0; font-weight:bold;}
+.search_data_select{ background:url(../images/search_data.png) no-repeat -58px 0;}
+.monitor_select{ background:url(../images/monitor.png) no-repeat -58px 0;}
+.knowledge_select{ background:url(../images/knowledge.png) no-repeat -58px 0;}
+.system_select{ background:url(../images/system.png) no-repeat -58px 0;}
+
+.nav_text{ color:#134c91;}
+.nav_text:hover{ color:#000;}
+
+.function{ background:url(../images/function.png) no-repeat;}
+.deal{ background:url(../images/deal.gif) no-repeat;}
+.receive{ background:url(../images/receive.gif) no-repeat;}
+.linkmen{ background:url(../images/linkmen.gif) no-repeat;}
+.f_line{ background:url(../images/f_line.gif) no-repeat right top;}
+
+/* nav */
+.subnav{ background:#c5dcf3;}
+.normal{ background:#cde1f5; border:1px solid #acbdd2; color:#797979;}
+.normal:hover{ background:#e1edf9; border:1px solid #b1c2d6; color:#444; text-decoration:none;}
+.select{ background:#b0cdea; border:1px solid #698aaf; color:#000;}
+.to_bottom{ position:absolute; left:34%; top:21px; display:block; overflow:hidden; width:0px; height:0px; border:4px solid #1f5b98; border-color:#1f5b98 #b0cdea; border-width:0 4px 4px 4px; margin:-4px 0 7px 8px;}
+
+/* content */
+.content{ background:#e3e8ec;}
+
+/* footer */
+.footer{ background:#7daee0;}
+
+/* main title table search */
+.title{ border:1px solid #becad5; border-width:0 1px; background:url(../images/title_bg.gif) repeat-x;}
+.notice_list,.log_list{ border:1px solid #becad5;}
+.button{ background:url(../images/button.gif) no-repeat;}
+.thead_function{ background:#e2eef8; border-top:1px solid #a7cff0;}
+.table_add,.table_edit,.table_del{ color:#666;}
+.table_add:hover,.table_edit:hover,.table_del:hover{ color:#333; text-decoration:underline;}
+
+/* round */
+.round_con{ background:#dfe6ee;}
+.b1,.b2,.b3,.b4{ background:#dfe6ee; border:1px solid #dfe6ee; border-width:0 1px;}
+.b1 { background:#dfe6ee;}
+.b2 { border:2px solid #dfe6ee; border-width:0 2px;}

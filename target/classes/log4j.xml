@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">  
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">  
+  
+    <!-- 控制台输出-->  
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">  
+        <param name="Target" value="System.out" />  
+        <param name="Threshold" value="INFO" />  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"  
+                value="%d{yyyy-MM-dd HH:mm:ss sss}[%-p][%-c][line:%-L] \r\n  %m%n" />  
+        </layout>  
+        <filter class="org.apache.log4j.varia.StringMatchFilter">  
+            <param name="StringToMatch" value="new a seq no spend" />  
+            <param name="AcceptOnMatch" value="false" />  
+        </filter>  
+        <filter class="org.apache.log4j.varia.StringMatchFilter">  
+            <param name="StringToMatch" value="new hi[type=" />  
+            <param name="AcceptOnMatch" value="false" />  
+        </filter>  
+        <filter class="org.apache.log4j.varia.StringMatchFilter">  
+            <param name="StringToMatch" value="FileTransfer.execCommand()" />  
+            <param name="AcceptOnMatch" value="false" />  
+        </filter>  
+    </appender>  
+  
+    <!--文件输出 按照文件大小滚动文件-->  
+    <appender name="xxxx_file" class="org.apache.log4j.RollingFileAppender">  
+        <param name="Append" value="true" />  
+        <param name="Threshold" value="INFO" />  
+        <param name="File" value="xxxx.log" />  
+        <param name="MaxFileSize" value="100MB" />  
+        <param name="MaxBackupIndex" value="15" />  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"  
+                value="%d{yyyy-MM-dd HH:mm:ss sss}[%-p][%-c][line:%-L] \r\n  %m%n" />  
+        </layout>  
+        <filter class="org.apache.log4j.varia.StringMatchFilter">  
+            <param name="StringToMatch" value="new a seq no spend" />  
+            <param name="AcceptOnMatch" value="false" />  
+        </filter>  
+        <filter class="org.apache.log4j.varia.StringMatchFilter">  
+            <param name="StringToMatch" value="new hi[type=" />  
+            <param name="AcceptOnMatch" value="false" />  
+        </filter>  
+        <filter class="org.apache.log4j.varia.StringMatchFilter">  
+            <param name="StringToMatch" value="FileTransfer.execCommand()" />  
+            <param name="AcceptOnMatch" value="false" />  
+        </filter>  
+    </appender>  
+      
+    <!-- 错误输出 过滤出错误日志信息-->  
+    <appender name="xxxx_error" class="org.apache.log4j.RollingFileAppender">  
+        <param name="Append" value="true" />  
+        <param name="Threshold" value="ERROR" />  
+        <param name="File" value="xxxx-error.log" />  
+        <param name="MaxFileSize" value="100MB" />  
+        <param name="MaxBackupIndex" value="4" />  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern"  
+                value="%d{yyyy-MM-dd HH:mm:ss sss}[%-p][%-c][line:%-L] \r\n  %m%n" />  
+        </layout>  
+    </appender>  
+     
+  <!-- 根loggr -->  
+    <root>  
+        <appender-ref ref="CONSOLE" />  
+    </root>  
+</log4j:configuration>  
