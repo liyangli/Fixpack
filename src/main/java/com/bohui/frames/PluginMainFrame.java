@@ -59,7 +59,7 @@ public class PluginMainFrame extends javax.swing.JFrame {
         PluginMainFrame jframe = new PluginMainFrame();
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
-        jframe.setResizable(true);
+        jframe.setResizable(false);
         int windowWidth = jframe.getWidth(); // 获得窗口宽
         int windowHeight = jframe.getHeight(); // 获得窗口高
         Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
