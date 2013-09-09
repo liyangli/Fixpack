@@ -39,7 +39,7 @@ public class FixPackFrame extends JFrame {
 	public FixPackFrame() {
 		
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\360\\图片\\默认相册\\wallpaper1.jpg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FixPackFrame.class.getClass().getResource("/").getPath()+"wallpaper1.jpg"));
 		setTitle("补丁安装");
 		setSize(470, 400);
 		getContentPane().setLayout(new GridLayout());
