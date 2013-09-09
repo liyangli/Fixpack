@@ -73,9 +73,11 @@ class NextListener implements ActionListener{
         RightPanel panel = frame.getRightPanel();
         panel.doFireConfig();
         //panel.removeAll();
-
+        panel.removeAll();
+        panel.revalidate();
+        panel.repaint();
         //panel.remove(1);
-       // frame.add(rightPanel);
+       frame.add(rightPanel);
     }
 
     /**
