@@ -3,6 +3,7 @@ package com.bohui.frames;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +32,11 @@ public class BootomPanel extends JPanel {
 
     private JButton nextBtn = new JButton("下一步");
     private JButton preBtn = new JButton("上一步");
+
+    public JButton getResetBtn() {
+        return resetBtn;
+    }
+
     private JButton resetBtn = new JButton("取消");
     public BootomPanel() {
         setLayout(null);
@@ -70,14 +76,22 @@ class NextListener implements ActionListener{
         //opeator right
         RightPanel rightPanel = PluginMainFrame.rightPanels.get(flag);
         PluginMainFrame frame = (PluginMainFrame)bootom.getParent().getParent().getParent().getParent();
-        RightPanel panel = frame.getRightPanel();
+       // RightPanel panel = frame.getRightPanel();
+        Component[] components = frame.getContentPane().getComponents();
+        RightPanel panel = null;
+        for(Component component:components){
+            if(component instanceof RightPanel){
+                 panel = (RightPanel)component;
+                break;
+            }
+        }
         panel.doFireConfig();
-        //panel.removeAll();
-        panel.removeAll();
-        panel.revalidate();
-        panel.repaint();
-        //panel.remove(1);
-       frame.add(rightPanel);
+        frame.getContentPane().remove(panel);
+        frame.getContentPane().add(rightPanel);
+        frame.getContentPane().repaint();
+        frame.invalidate();
+        frame.validate();
+
     }
 
     /**
@@ -101,10 +115,10 @@ class NextListener implements ActionListener{
             preLabel.setIcon(runImage);
 
             if(flag == 9){
-                bootom.getPreBtn().setBounds(390, 0, 90, 30);
+                // add complate btn
+                bootom.getPreBtn().setVisible(false);
                 bootom.getNextBtn().setVisible(false);
-            }else{
-                bootom.getPreBtn().setBounds(300, 0, 90, 30);
+                bootom.getResetBtn().setText("完成");
             }
 
         }

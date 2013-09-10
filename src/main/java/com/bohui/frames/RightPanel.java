@@ -17,7 +17,6 @@ public abstract class RightPanel extends JPanel{
     public RightPanel(){
         setLayout(null);
         setBounds(200,0,400,400);
-        removeAll();
         add(topPanel());
         add(bootomPanel());
     }
