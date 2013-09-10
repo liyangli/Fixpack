@@ -38,7 +38,7 @@ public class LicensePanel extends RightPanel {
         checkBox.setBounds(200,350,20,20);
 
         JLabel label = new JLabel("同意");
-        label.setBounds(220,350,100,30);
+        label.setBounds(220,350,80,20);
         bootom.add(label);
         checkBox.addActionListener(new ActionListener() {
 

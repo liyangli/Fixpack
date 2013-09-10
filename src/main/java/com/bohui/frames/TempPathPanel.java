@@ -21,7 +21,8 @@ public class TempPathPanel extends RightPanel {
     @Override
     protected JPanel bootomPanel() {
         JPanel bootom = new JPanel();
-
+        bootom.setLayout(null);
+        bootom.setBounds(10,10,400,400);
 
         return bootom;
     }
