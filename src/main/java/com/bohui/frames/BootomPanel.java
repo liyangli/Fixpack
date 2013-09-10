@@ -141,7 +141,6 @@ class NextListener implements ActionListener{
         setLeftPanelByNext(bootom);
         //opeator right
         BootomPanel.opeatorRight(bootom);
-
     }
 
 
