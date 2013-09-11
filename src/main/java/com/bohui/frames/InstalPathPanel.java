@@ -1,5 +1,7 @@
 package com.bohui.frames;
 
+import com.bohui.resource.PropertiesResource;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +53,9 @@ public class InstalPathPanel extends RightPanel {
     @Override
     public void doFireConfig() {
         //deal save webPath
-
+        String webPath = filePaths.getText();
+        PropertiesResource resource = PropertiesResource.newInstance("config.properties");
+        resource.setProValue("webPath",webPath);
     }
 
     /**

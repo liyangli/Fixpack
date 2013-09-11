@@ -3,6 +3,8 @@ package com.bohui.resource;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -15,41 +17,38 @@ import org.slf4j.LoggerFactory;
  */
 public class PropertiesResource {
 
+    private static final Map<String,PropertiesResource> resources = new HashMap<String, PropertiesResource>();
+
+
 	private static Logger log = LoggerFactory.getLogger(PropertiesResource.class);
 	private static PropertiesResource propertiesUtil = null;
 	private Properties properties = null;
-	private static String filePath = "jdbc.properties";
+	private static String fileName = "jdbc.properties";
 	
-	private PropertiesResource(String path)
+	private PropertiesResource(String fileName)
 	{
 		properties = new Properties();
 		try {
-			log.info("propertiesUtil path is {}",path);
-			properties.load(new FileInputStream(path));
+
+			properties.load(new FileInputStream(PropertiesResource.class.getResource("/").getPath()+fileName));
 		} catch (FileNotFoundException e) {
 			log.error("文件没有发现",e);
 		} catch (IOException e) {
 			log.error("文件解析出现错误",e);
 		}
+        resources.put(fileName,this);
 	}
 	
 	public synchronized static PropertiesResource newInstance(){
-		if(propertiesUtil == null)
-		{
-			propertiesUtil =  new PropertiesResource(PropertiesResource.class.getResource("/").getPath()+filePath);
-		}
-		return propertiesUtil;
+		return newInstance(fileName);
 	}
 	
-	public synchronized static PropertiesResource newInstance(String filePath){
-		if(propertiesUtil == null){
-			propertiesUtil =  new PropertiesResource(filePath);
-		}else{
-			if(!PropertiesResource.filePath.equals(filePath)){
-				propertiesUtil =  new PropertiesResource(filePath);
-			} 
-		}
-		return propertiesUtil;
+	public synchronized static PropertiesResource newInstance(String fileName){
+        PropertiesResource resource = resources.get(fileName);
+        if(resource == null){
+            return new PropertiesResource(fileName);
+        }
+		return resource;
 	}
 	
 	
@@ -71,4 +70,13 @@ public class PropertiesResource {
 	public String getProValue(String key){
 		return getProValue(key, null);
 	}
+
+    /**
+     * 设定对应属性值
+     * @param key
+     * @param value
+     */
+    public void setProValue(String key,String value){
+        properties.setProperty(key,value);
+    }
 }
