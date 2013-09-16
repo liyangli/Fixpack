@@ -1,6 +1,5 @@
 package com.bohui.frames;
 
-import sun.awt.image.ToolkitImage;
 
 import javax.swing.*;
 import javax.swing.border.Border;

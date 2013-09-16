@@ -22,7 +22,7 @@ public class PropertiesResource {
 
 	private static Logger log = LoggerFactory.getLogger(PropertiesResource.class);
 	private static PropertiesResource propertiesUtil = null;
-	private Properties properties = null;
+	private static Properties properties = null;
 	private static String fileName = "jdbc.properties";
 	
 	private PropertiesResource(String fileName)
