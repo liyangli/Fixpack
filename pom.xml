@@ -16,7 +16,6 @@
 </properties>
 
 
-  
   <dependencies>
     <dependency>
 			<groupId>junit</groupId>
@@ -74,7 +73,22 @@
 		</dependency>
 	 
   </dependencies>
-
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Internal Releases</name>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <!--<snapshotRepository>
+            <id>snapshots</id>
+            <name>Internal Snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>-->
+        <snapshotRepository>
+            <id>thirdparty</id>
+            <url>http://172.17.13.101:8081/nexus/content/repositories/thirdparty</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 
 </project>
