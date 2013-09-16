@@ -73,21 +73,38 @@
 		</dependency>
 	 
   </dependencies>
-    <distributionManagement>
+    <repositories>
         <repository>
             <id>releases</id>
             <name>Internal Releases</name>
             <url>http://localhost:8081/nexus/content/repositories/releases</url>
         </repository>
-        <!--<snapshotRepository>
+        <repository>
+            <id>snapshots</id>
+            <name>snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>thirdparty</id>
+            <name>thirdparty</name>
+            <url>http://172.17.13.101:8081/nexus/content/repositories/thirdparty</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+       <!-- <repository>
+            <id>snapshots</id>
+            <name>snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </repository>-->
+        <snapshotRepository>
             <id>snapshots</id>
             <name>Internal Snapshots</name>
             <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>-->
-        <snapshotRepository>
+        </snapshotRepository>
+        <!--<snapshotRepository>
             <id>thirdparty</id>
             <url>http://172.17.13.101:8081/nexus/content/repositories/thirdparty</url>
-        </snapshotRepository>
+        </snapshotRepository>-->
     </distributionManagement>
 
 
