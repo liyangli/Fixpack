@@ -32,7 +32,7 @@ public class TempPathPanel extends RightPanel {
         showLabel.setBounds(10,40,400,200);
         bootom.add(showLabel);
 
-        JLabel label = new JLabel("请选择备份路径：");
+        JLabel label = new JLabel("备份路径：");
         label.setBounds(10,270,100,25);
         bootom.add(label);
 

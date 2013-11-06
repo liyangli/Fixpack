@@ -47,12 +47,17 @@ public class PluginMainFrame extends javax.swing.JFrame {
        rightPanels.put(1,new SummaryPanel());
        rightPanels.put(2,new LicensePanel());
        rightPanels.put(3,new InstalPathPanel());
-       rightPanels.put(4,new TempPathPanel());
-       rightPanels.put(5,new DBModelPanel());
-       rightPanels.put(6,new DBConfigPanel());
-       rightPanels.put(7,new PlanInstalPanel());
-       rightPanels.put(8,new InstallingPanel());
-       rightPanels.put(9,new CompletePanel());
+//       rightPanels.put(4,new TempPathPanel());
+//       rightPanels.put(5,new DBModelPanel());
+//       rightPanels.put(6,new DBConfigPanel());
+//       rightPanels.put(7,new PlanInstalPanel());
+//       rightPanels.put(8,new InstallingPanel());
+//       rightPanels.put(9,new CompletePanel());
+       rightPanels.put(4,new DBModelPanel());
+       rightPanels.put(5,new DBConfigPanel());
+       rightPanels.put(6,new PlanInstalPanel());
+       rightPanels.put(7,new InstallingPanel());
+       rightPanels.put(8,new CompletePanel());
    }
     public static void main(String[] args){
         PluginMainFrame jframe = new PluginMainFrame();
@@ -78,7 +83,7 @@ class LeftPanel extends JPanel{
     private JLabel summary = new JLabel("简介");
     private JLabel license= new JLabel("许可声明");
     private JLabel instalPath = new JLabel("安装路径");
-    private JLabel tempPath = new JLabel("备份路径");
+//    private JLabel tempPath = new JLabel("备份路径");
     private JLabel dbModel = new JLabel("数据库更新模式");
     private JLabel dbConfig = new JLabel("配置数据库");
     private JLabel planInstal = new JLabel("预案装摘要");
@@ -105,28 +110,28 @@ class LeftPanel extends JPanel{
         add(license);
         instalPath.setBounds(30,120,200,20);
         add(instalPath);
-        tempPath.setBounds(30,150,200,20);
-        add(tempPath);
-        dbModel.setBounds(30,180,200,20);
+//        tempPath.setBounds(30,150,200,20);
+//        add(tempPath);
+        dbModel.setBounds(30,150,200,20);
         add(dbModel);
-        dbConfig.setBounds(30,210,200,20);
+        dbConfig.setBounds(30,180,200,20);
         add(dbConfig);
-        planInstal.setBounds(30,240,200,20);
+        planInstal.setBounds(30,210,200,20);
         add(planInstal);
-        installing.setBounds(30,270,200,20);
+        installing.setBounds(30,240,200,20);
         add(installing);
-        complete.setBounds(30,300,200,20);
+        complete.setBounds(30,270,200,20);
         add(complete);
 
         PluginMainFrame.leftLables.put(1,summary);
         PluginMainFrame.leftLables.put(2,license);
         PluginMainFrame.leftLables.put(3,instalPath);
-        PluginMainFrame.leftLables.put(4,tempPath);
-        PluginMainFrame.leftLables.put(5,dbModel);
-        PluginMainFrame.leftLables.put(6,dbConfig);
-        PluginMainFrame.leftLables.put(7,planInstal);
-        PluginMainFrame.leftLables.put(8,installing);
-        PluginMainFrame.leftLables.put(9,complete);
+//        PluginMainFrame.leftLables.put(4,tempPath);
+        PluginMainFrame.leftLables.put(4,dbModel);
+        PluginMainFrame.leftLables.put(5,dbConfig);
+        PluginMainFrame.leftLables.put(6,planInstal);
+        PluginMainFrame.leftLables.put(7,installing);
+        PluginMainFrame.leftLables.put(8,complete);
     }
 
     JLabel getComplete() {
@@ -193,13 +198,13 @@ class LeftPanel extends JPanel{
         this.summary = summary;
     }
 
-    JLabel getTempPath() {
-        return tempPath;
-    }
-
-    void setTempPath(JLabel tempPath) {
-        this.tempPath = tempPath;
-    }
+//    JLabel getTempPath() {
+//        return tempPath;
+//    }
+//
+//    void setTempPath(JLabel tempPath) {
+//        this.tempPath = tempPath;
+//    }
 
     JLabel getTitle() {
         return title;

@@ -34,7 +34,7 @@ public class InstalPathPanel extends RightPanel {
         showLabel.setBounds(10,40,400,200);
         bootom.add(showLabel);
 
-        JLabel label = new JLabel("请选择路径：");
+        JLabel label = new JLabel("安装路径：");
         label.setBounds(10,270,100,25);
         bootom.add(label);
 
@@ -54,8 +54,22 @@ public class InstalPathPanel extends RightPanel {
     public void doFireConfig() {
         //deal save webPath
         String webPath = filePaths.getText();
+        if(webPath == null || webPath.isEmpty()){
+
+        }
         PropertiesResource resource = PropertiesResource.newInstance("config.properties");
         resource.setProValue("webPath",webPath);
+    }
+
+    @Override
+    public boolean validateField() {
+        boolean flag = false;
+        String selectPath = filePaths.getText();
+        if(selectPath == null || selectPath.isEmpty()){
+            flag = true;
+            JOptionPane.showMessageDialog(null, "安装路径不能为空", "路径不能为空", JOptionPane.ERROR_MESSAGE);
+        }
+        return flag;
     }
 
     /**

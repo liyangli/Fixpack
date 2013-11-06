@@ -43,4 +43,8 @@ public abstract class RightPanel extends JPanel{
      * DbInstallConfig
      */
     public  void doFireConfig(){};
+
+    public boolean validateField(){
+        return false;
+    }
 }

@@ -62,7 +62,6 @@ public class BootomPanel extends JPanel {
 
 
     public static void opeatorRight(BootomPanel bootom) {
-        RightPanel rightPanel = PluginMainFrame.rightPanels.get(BootomPanel.flag);
         PluginMainFrame frame = (PluginMainFrame)bootom.getParent().getParent().getParent().getParent();
         // RightPanel panel = frame.getRightPanel();
         Component[] components = frame.getContentPane().getComponents();
@@ -73,6 +72,7 @@ public class BootomPanel extends JPanel {
                 break;
             }
         }
+        RightPanel rightPanel = PluginMainFrame.rightPanels.get(BootomPanel.flag);
         panel.doFireConfig();
         frame.getContentPane().remove(panel);
         frame.getContentPane().add(rightPanel);
@@ -81,6 +81,24 @@ public class BootomPanel extends JPanel {
         frame.validate();
     }
 
+    public static boolean validatePass(BootomPanel bootom) {
+        boolean flag = false;
+        PluginMainFrame frame = (PluginMainFrame)bootom.getParent().getParent().getParent().getParent();
+        // RightPanel panel = frame.getRightPanel();
+        Component[] components = frame.getContentPane().getComponents();
+        RightPanel panel = null;
+        for(Component component:components){
+            if(component instanceof RightPanel){
+                panel = (RightPanel)component;
+                break;
+            }
+        }
+//         提前验证是否允许进行下一步
+        if(panel.validateField()){
+            flag = true;
+        }
+        return flag;
+    }
 }
 
 /**
@@ -136,11 +154,17 @@ class NextListener implements ActionListener{
         //set preBtn  netBtn and leftPanel and rightPanel change
         JButton nextBtn = (JButton)e.getSource();
         BootomPanel bootom = (BootomPanel)nextBtn.getParent();
+        //validate right panel
+        boolean flag = BootomPanel.validatePass(bootom);
+        if(flag){
+            return;
+        }
         BootomPanel.flag += 1;
-        //opeator left
-        setLeftPanelByNext(bootom);
         //opeator right
         BootomPanel.opeatorRight(bootom);
+        //opeator left
+        setLeftPanelByNext(bootom);
+
     }
 
 
