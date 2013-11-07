@@ -38,7 +38,9 @@ public class InstalPathPanel extends RightPanel {
         label.setBounds(10,270,100,25);
         bootom.add(label);
 
-        filePaths = new JTextField();
+        PropertiesResource resource = PropertiesResource.newInstance("config.properties");
+        String defaultPath = resource.getProValue("defaultPath");
+        filePaths = new JTextField(defaultPath);
         filePaths.setBounds(90,270,185,25);
         //filePaths.setEditable(false);
         bootom.add(filePaths);
@@ -55,7 +57,7 @@ public class InstalPathPanel extends RightPanel {
         //deal save webPath
         String webPath = filePaths.getText();
         if(webPath == null || webPath.isEmpty()){
-
+                return;
         }
         PropertiesResource resource = PropertiesResource.newInstance("config.properties");
         resource.setProValue("webPath",webPath);

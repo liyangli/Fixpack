@@ -1,8 +1,6 @@
 package com.bohui.resource;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -24,6 +22,8 @@ public class PropertiesResource {
 	private static PropertiesResource propertiesUtil = null;
 	private static Properties properties = null;
 	private static String fileName = "jdbc.properties";
+
+    private String file = "";
 	
 	private PropertiesResource(String fileName)
 	{
@@ -37,6 +37,7 @@ public class PropertiesResource {
 			log.error("文件解析出现错误",e);
 		}
         resources.put(fileName,this);
+        file = fileName;
 	}
 	
 	public synchronized static PropertiesResource newInstance(){
@@ -77,6 +78,13 @@ public class PropertiesResource {
      * @param value
      */
     public void setProValue(String key,String value){
-        properties.setProperty(key,value);
+
+        try {
+            OutputStream fos = new FileOutputStream(PropertiesResource.class.getResource("/").getPath()+file);
+            properties.setProperty(key, value);
+            properties.store(fos, "Update '" + key + "' value");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

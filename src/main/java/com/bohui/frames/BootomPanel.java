@@ -74,6 +74,7 @@ public class BootomPanel extends JPanel {
         }
         RightPanel rightPanel = PluginMainFrame.rightPanels.get(BootomPanel.flag);
         panel.doFireConfig();
+        rightPanel.doInit();
         frame.getContentPane().remove(panel);
         frame.getContentPane().add(rightPanel);
         frame.getContentPane().repaint();
@@ -189,7 +190,7 @@ class NextListener implements ActionListener{
             ImageIcon runImage =new ImageIcon(FixPackFrame.class.getClass().getResource("/").getPath() +"success.jpg");
             preLabel.setIcon(runImage);
 
-            if(BootomPanel.flag == 9){
+            if(BootomPanel.flag == 7){
                 // add complate btn
                 bootom.getPreBtn().setVisible(false);
                 bootom.getNextBtn().setVisible(false);

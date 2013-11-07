@@ -21,8 +21,13 @@ public class CompletePanel extends RightPanel {
     @Override
     protected JPanel bootomPanel() {
         JPanel bootom = new JPanel();
+        bootom.setLayout(null);
+        bootom.setBounds(10,10,400,400);
 
-
+       JLabel label = new JLabel();
+        label.setText("安装完成");
+        label.setBounds(10,50,100,25);
+        bootom.add(label);
 
         return bootom;
     }

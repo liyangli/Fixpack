@@ -32,7 +32,7 @@ public class PluginMainFrame extends javax.swing.JFrame {
 
    public PluginMainFrame(){
        setSize(600, 550);
-       this.setTitle("补丁升级包");
+       this.setTitle("安装包");
        setIconImage(Toolkit.getDefaultToolkit().getImage(FixPackFrame.class.getClass().getResource("/").getPath() + "wallpaper1.jpg"));
        getContentPane().setLayout(null);
        add(leftPanel);
@@ -87,8 +87,8 @@ class LeftPanel extends JPanel{
     private JLabel dbModel = new JLabel("数据库更新模式");
     private JLabel dbConfig = new JLabel("配置数据库");
     private JLabel planInstal = new JLabel("预案装摘要");
-    private JLabel installing = new JLabel("安装中");
-    private JLabel complete = new JLabel("安装完成");
+    private JLabel installing = new JLabel("安装完成");
+//    private JLabel complete = new JLabel("安装完成");
 
     public LeftPanel(){
         Border border2 = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
@@ -120,8 +120,8 @@ class LeftPanel extends JPanel{
         add(planInstal);
         installing.setBounds(30,240,200,20);
         add(installing);
-        complete.setBounds(30,270,200,20);
-        add(complete);
+//        complete.setBounds(30,270,200,20);
+//        add(complete);
 
         PluginMainFrame.leftLables.put(1,summary);
         PluginMainFrame.leftLables.put(2,license);
@@ -131,16 +131,16 @@ class LeftPanel extends JPanel{
         PluginMainFrame.leftLables.put(5,dbConfig);
         PluginMainFrame.leftLables.put(6,planInstal);
         PluginMainFrame.leftLables.put(7,installing);
-        PluginMainFrame.leftLables.put(8,complete);
+//        PluginMainFrame.leftLables.put(8,complete);
     }
 
-    JLabel getComplete() {
-        return complete;
-    }
-
-    void setComplete(JLabel complete) {
-        this.complete = complete;
-    }
+//    JLabel getComplete() {
+//        return complete;
+//    }
+//
+//    void setComplete(JLabel complete) {
+//        this.complete = complete;
+//    }
 
     JLabel getDbConfig() {
         return dbConfig;

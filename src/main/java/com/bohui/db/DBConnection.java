@@ -10,4 +10,6 @@ import java.sql.Connection;
 public interface DBConnection {
 
 	Connection getConnection() throws Exception;
+
+    Connection getConnection(String ip, String port, String dbName, String userName, String password) throws Exception;
 }

@@ -44,6 +44,8 @@ public abstract class RightPanel extends JPanel{
      */
     public  void doFireConfig(){};
 
+    public void doInit(){};
+
     public boolean validateField(){
         return false;
     }
