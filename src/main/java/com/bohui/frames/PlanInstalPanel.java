@@ -1,6 +1,7 @@
 package com.bohui.frames;
 
 import com.bohui.resource.PropertiesResource;
+import com.bohui.service.ProjectService;
 
 import javax.swing.*;
 
@@ -78,7 +79,14 @@ public class PlanInstalPanel extends RightPanel {
     @Override
     public void doFireConfig() {
         //预安装
-        System.out.println(PlanInstalPanel.class.getResource("/").getPath());
+        //1、判断执行sql文件
+        ProjectService.execSQL();
+        //2、更改jdbc文件
+        ProjectService.jdbcFileReplace();
+        //3、拷贝文件到指定目录
+        ProjectService.copyProject();
+        //4、启动tomcat
+        ProjectService.startTomcat();
     }
 
     @Override
