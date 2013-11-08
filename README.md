@@ -15,3 +15,14 @@ V1.0
 应用
 1、fixpack V1.0 支持通过配置文件db.peroperties指定补丁和需要进行执行的sql脚本相对路径，
 2、进行指定项目部署目录
+
+项目路径规定
+
+项目--
+-----项目
+-----tomcat
+     sqk-----sql文件
+     system---win
+           ---linux
+     .exe文件
+
