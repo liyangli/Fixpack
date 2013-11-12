@@ -15,18 +15,48 @@ public class WinService extends BaseService {
     @Override
     public void sysConfig() {
          //java 调用cmd,传入sql文件、启动tomcat,增加驱动
+        String dbMode = resource.getProValue("dbMode");
+        try {
+            if("0".equals(dbMode)){
+                runCmd();
+            }
+            tomcatRun();
+            //执行驱动
+            driver();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private  void runCmd() throws Exception{
-        String netSID = resource.getProValue("netSID");
-        String userName = resource.getProValue("dbUser");
-        String password = resource.getProValue("dbPassword");
+    /**
+     * 驱动加载
+     */
+    private void driver() throws  Exception{
+        String filePath = resource.getProValue("webPath");
+        String driverExe = resource.getProValue("driverExe");
+        if(driverExe != null && !driverExe.isEmpty() ) {
+            String driver =  filePath + "/driver/driver.exe";
+            cmdExe(driver);
+        }
+    }
 
-        String cmdRun = "cmd /c sqlplus "+userName+"/"+password+"@"+netSID;
-//        String cmdRun = "cmd /c dir";
-        System.out.println(cmdRun);
+    /**
+     * tomcat 运行
+     */
+    private void tomcatRun() throws Exception{
+        String filePath = resource.getProValue("webPath");
+        String tomcatPath = filePath + "/tomcat/bin";
+        String cmdRun = tomcatPath+"/service.bat install tomcat7";
+        cmdExe(cmdRun);
+
+        String runTomcat = "net start tomcat7";
+        cmdExe(runTomcat);
+    }
+
+    private void cmdExe(String cmd) throws  Exception{
         Runtime rt = Runtime.getRuntime();
-        Process pr = rt.exec(cmdRun); // cmd /c calc
+        Process pr = rt.exec(cmd); // cmd /c calc
 
         BufferedReader input = new BufferedReader(new InputStreamReader(pr.getInputStream(), "GBK"));
 
@@ -36,113 +66,54 @@ public class WinService extends BaseService {
             System.out.println(line);
         }
 
-        OutputStream out = pr.getOutputStream();
-        out.write("@E:/aa.sql".getBytes());
-
-//        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter());
-//        writer.write("@E:/aa.sql");
-//        writer.flush();
-
         int exitVal = pr.waitFor();
-        System.out.println("Exited with error code " + exitVal);
-
-        BufferedReader input1 = new BufferedReader(new InputStreamReader(pr.getInputStream(), "GBK"));
-
-        String line1 = null;
-
-        while ((line1 = input.readLine()) != null) {
-            System.out.println(line1);
-        }
-
-
     }
 
-    private void console(){
-        Console c = System.console();
-        if (c == null) {
-            System.err.println("No console.");
-            System.exit(1);
+    /**
+     * 运行sql文件
+     * @throws Exception
+     */
+    private  void runCmd() throws Exception{
+        String netSID = resource.getProValue("netSID");
+        String userName = resource.getProValue("dbUser");
+        String password = resource.getProValue("dbPassword");
+        String filePath = resource.getProValue("webPath");
+
+//      获得对应sql文件路径
+        String dbTableSpace = resource.getProValue("dbTableSpace");
+        String dbIndex = resource.getProValue("dbIndex");
+        String dbTable = resource.getProValue("dbTable");
+        String dbInit = resource.getProValue("dbInit");
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("cmd /c sqlplus ");
+        builder.append(userName);
+        builder.append("/").append(password);
+        builder.append("@").append(netSID);
+
+        StringBuilder sqlBuilder = new StringBuilder();
+        if("1".equals(dbTableSpace)){
+            String tableSpace = resource.getProValue("spaceSql");
+            sqlBuilder.append("@").append(filePath+tableSpace);
+        }
+        if("1".equals(dbIndex)){
+            String index = resource.getProValue("indexSql");
+            sqlBuilder.append("@").append(filePath+index);
+        }
+        if("1".equals(dbTable)){
+            String tableSql = resource.getProValue("tableSql");
+            sqlBuilder.append("@").append(filePath+tableSql);
+        }
+        if("1".equals(dbInit)){
+            String initSql = resource.getProValue("initSql");
+            sqlBuilder.append("@").append(filePath+initSql);
         }
 
-        String login = c.readLine("Enter your login: ");
-        char [] oldPassword = c.readPassword("Enter your old password: ");
+        builder.append(sqlBuilder);
 
-        char [] newPassword1 = c.readPassword("Enter your new password: ");
-        char [] newPassword2 = c.readPassword("Enter new password again: ");
-        System.out.println(oldPassword.toString());
-        System.out.println(newPassword1.toString());
-        System.out.println(newPassword2.toString());
+        String cmdRun = builder.toString();
+        cmdExe(cmdRun);
 
-       /* if (verify(login, oldPassword)) {
-            boolean noMatch;
-            do {
-                char [] newPassword1 = c.readPassword("Enter your new password: ");
-                char [] newPassword2 = c.readPassword("Enter new password again: ");
-                noMatch = ! Arrays.equals(newPassword1, newPassword2);
-                if (noMatch) {
-                    c.format("Passwords don't match. Try again.%n");
-                } else {
-                    change(login, newPassword1);
-                    c.format("Password for %s changed.%n", login);
-                }
-                Arrays.fill(newPassword1, ' ');
-                Arrays.fill(newPassword2, ' ');
-            } while (noMatch);
-        }
-
-        Arrays.fill(oldPassword, ' ');*/
-    }
-
-    private void demo() throws Exception{
-
-        try {
-            Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec("cmd /c ");
-            InputStream stderr = proc.getErrorStream();
-            InputStreamReader isr = new InputStreamReader(stderr);
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(proc
-                    .getInputStream()));
-
-            // copy content of "path" to stdin:
-
-            OutputStreamWriter w = new OutputStreamWriter(proc.getOutputStream());
-            /*BufferedReader r = new BufferedReader(new FileReader(path));
-
-            int ch;
-            while( (ch = r.read()) != -1 ) {
-                w.write(ch);
-            }
-            w.close();
-            r.close();*/
-            w.write("ls",0,2);
-            w.close();
-
-            // copy content of stdout to our stdout:
-            String line = null;
-
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-            br.close();
-
-            int returnCode = proc.waitFor();
-
-            if( returnCode != 0 ) {
-                // error message
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void main(String[] args) throws  Exception{
-        WinService winService = new WinService();
-//        winService.runCmd();
-        //winService.console();
-        winService.demo();
     }
 
 }

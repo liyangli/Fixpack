@@ -21,7 +21,7 @@ V1.0
 项目--
 -----项目
 -----tomcat
-     sqk-----sql文件
+     sql-----sql文件
      system---win
            ---linux
      .exe文件
